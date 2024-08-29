@@ -43,9 +43,9 @@ export default function Hero() {
       sx={(theme) => ({
         width: '100%',
         backgroundRepeat: 'no-repeat',
-        mt: 6,
+        mt: 0,
         backgroundImage:
-          'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 90%), transparent)',
+          'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 80%), transparent)',
         ...theme.applyStyles('dark', {
           backgroundImage:
             'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(210, 100%, 16%), transparent)',
@@ -66,7 +66,7 @@ export default function Hero() {
           useFlexGap
           sx={{ alignItems: 'center', width: { xs: '100%', sm: '70%' } }}
         >
-          <Typography
+          {/* <Typography
             variant="h1"
             sx={{
               display: 'flex',
@@ -89,6 +89,22 @@ export default function Hero() {
             >
               products
             </Typography>
+          </Typography> */}
+          <Typography variant="h1" sx={{ textAlign: 'center' }}>
+            Te ayudamos a mejorar tus condiciones&nbsp;
+            <Typography
+              component="span"
+              variant="h1"
+              sx={(theme) => ({
+                fontSize: 'inherit',
+                color: 'primary.main',
+                ...theme.applyStyles('dark', {
+                  color: 'primary.light',
+                }),
+              })}
+            >
+              financieras
+            </Typography>
           </Typography>
           <Typography
             sx={{
@@ -97,9 +113,7 @@ export default function Hero() {
               width: { sm: '100%', md: '80%' },
             }}
           >
-            Explore our cutting-edge dashboard, delivering high-quality solutions
-            tailored to your needs. Elevate your experience with top-tier features
-            and services.
+            Evaluamos tus deudas con metodologias usadas por la banca para que puedas mejorar tus condiciones financieras y dar el siguiente paso informado y con confianza.
           </Typography>
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
@@ -115,13 +129,13 @@ export default function Hero() {
               hiddenLabel
               size="small"
               variant="outlined"
-              aria-label="Enter your email address"
-              placeholder="Your email address"
+              aria-label="Ingresa tu correo electronico"
+              placeholder="Tu correo electronico"
               fullWidth
               slotProps={{
                 htmlInput: {
                   autoComplete: 'off',
-                  'aria-label': 'Enter your email address',
+                  'aria-label': 'Ingresa tu correo electronico',
                 },
               }}
             />
@@ -131,7 +145,7 @@ export default function Hero() {
               size="small"
               sx={{ minWidth: 'fit-content' }}
             >
-              Start now
+              Comenzemos
             </Button>
           </Stack>
           <Typography
@@ -139,14 +153,14 @@ export default function Hero() {
             color="text.secondary"
             sx={{ textAlign: 'center' }}
           >
-            By clicking &quot;Start now&quot; you agree to our&nbsp;
+            Al presionar &quot;Comenzemos&quot; aceptas nuestros&nbsp;
             <Link href="#" color="primary">
-              Terms & Conditions
+              terminos y condiciones
             </Link>
             .
           </Typography>
         </Stack>
-        <StyledBox id="image" />
+        {/* <StyledBox id="image" /> */}
       </Container>
     </Box>
   );

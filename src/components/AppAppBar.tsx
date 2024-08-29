@@ -12,13 +12,14 @@ import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import Sitemark from './SitemarkIcon';
+import ReblLogo from './ReblLogo';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
   flexShrink: 0,
-  borderRadius: `calc(${theme.shape.borderRadius}px + 8px)`,
+  borderRadius: `calc(${theme.shape.borderRadius}px + 16px)`,
   backdropFilter: 'blur(24px)',
   border: '1px solid',
   borderColor: theme.palette.divider,
@@ -37,30 +38,28 @@ export default function AppAppBar() {
   return (
     <AppBar
       position="fixed"
-      sx={{ boxShadow: 0, bgcolor: 'transparent', backgroundImage: 'none', mt: 10 }}
+      sx={{ boxShadow: 0, bgcolor: 'transparent', backgroundImage: 'none', mt: 5 }}
     >
       <Container maxWidth="lg">
         <StyledToolbar variant="dense" disableGutters>
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
-            <Sitemark />
+            {/* <Sitemark /> */}
+            <ReblLogo />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button variant="text" color="info" size="small">
-                Features
+              <Button variant="text" color="info" size="small" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
+                Servicios
               </Button>
-              <Button variant="text" color="info" size="small">
-                Testimonials
+              <Button variant="text" color="info" size="small" onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}>
+                Casos de exito
               </Button>
-              <Button variant="text" color="info" size="small">
-                Highlights
+              <Button variant="text" color="info" size="small" onClick={() => document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' })}>
+                Nuestros clientes
               </Button>
-              <Button variant="text" color="info" size="small">
+              <Button variant="text" color="info" size="small" onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}>
                 Pricing
               </Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }} onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}>
                 FAQ
-              </Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
-                Blog
               </Button>
             </Box>
           </Box>
@@ -72,10 +71,10 @@ export default function AppAppBar() {
             }}
           >
             <Button color="primary" variant="text" size="small">
-              Sign in
+              Ingresa
             </Button>
-            <Button color="primary" variant="contained" size="small">
-              Sign up
+            <Button color="primary" variant="contained" size="small" href='/signup'>
+              Registrate
             </Button>
           </Box>
           <Box sx={{ display: { sm: 'flex', md: 'none' } }}>

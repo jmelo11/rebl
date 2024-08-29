@@ -1,4 +1,5 @@
 import { createTheme, alpha, Shadows, PaletteMode } from '@mui/material/styles';
+import '../App.css';
 
 declare module '@mui/material/Paper' {
   interface PaperPropsVariantOverrides {
@@ -19,7 +20,7 @@ declare module '@mui/material/styles/createPalette' {
     900: string;
   }
 
-  interface PaletteColor extends ColorRange {}
+  interface PaletteColor extends ColorRange { }
 }
 
 const customTheme = createTheme();

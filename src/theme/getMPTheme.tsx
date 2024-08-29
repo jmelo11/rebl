@@ -9,6 +9,7 @@ import {
   surfacesCustomizations,
 } from './customizations';
 
+
 export default function getMPTheme(mode: PaletteMode): ThemeOptions {
   return {
     ...getDesignTokens(mode),
