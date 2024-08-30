@@ -1,14 +1,10 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-import { visuallyHidden } from '@mui/utils';
 import { styled } from '@mui/material/styles';
 
 const StyledBox = styled('div')(({ theme }) => ({
@@ -58,7 +54,7 @@ export default function Hero() {
           flexDirection: 'column',
           alignItems: 'center',
           pt: { xs: 14, sm: 20 },
-          pb: { xs: 8, sm: 12 },
+          // pb: { xs: 8, sm: 12 },
         }}
       >
         <Stack
@@ -66,30 +62,6 @@ export default function Hero() {
           useFlexGap
           sx={{ alignItems: 'center', width: { xs: '100%', sm: '70%' } }}
         >
-          {/* <Typography
-            variant="h1"
-            sx={{
-              display: 'flex',
-              flexDirection: { xs: 'column', sm: 'row' },
-              alignItems: 'center',
-              fontSize: 'clamp(3rem, 10vw, 3.5rem)',
-            }}
-          >
-            Our&nbsp;latest&nbsp;
-            <Typography
-              component="span"
-              variant="h1"
-              sx={(theme) => ({
-                fontSize: 'inherit',
-                color: 'primary.main',
-                ...theme.applyStyles('dark', {
-                  color: 'primary.light',
-                }),
-              })}
-            >
-              products
-            </Typography>
-          </Typography> */}
           <Typography
             variant="h1"
             sx={{
@@ -97,7 +69,6 @@ export default function Hero() {
               textAlign: 'center',
               flexDirection: { xs: 'column', sm: 'row' },
               alignItems: 'center',
-              fontSize: 'clamp(3rem, 10vw, 3.5rem)',
             }}
           >
             Te ayudamos a mejorar tus condiciones financieras
@@ -117,30 +88,13 @@ export default function Hero() {
             useFlexGap
             sx={{ pt: 2, width: { xs: '100%', sm: '350px' } }}
           >
-            <InputLabel htmlFor="email-hero" sx={visuallyHidden}>
-              Email
-            </InputLabel>
-            <TextField
-              id="email-hero"
-              hiddenLabel
-              size="small"
-              variant="outlined"
-              aria-label="Ingresa tu correo electronico"
-              placeholder="Tu correo electronico"
-              fullWidth
-              slotProps={{
-                htmlInput: {
-                  autoComplete: 'off',
-                  'aria-label': 'Ingresa tu correo electronico',
-                },
-              }}
-            />
             <Button
               variant="contained"
               color="primary"
               size="small"
               sx={{ minWidth: 'fit-content' }}
               href='/stepper'
+              fullWidth
             >
               Comenzemos
             </Button>
@@ -152,12 +106,10 @@ export default function Hero() {
           >
             Al presionar &quot;Comenzemos&quot; aceptas nuestros&nbsp;
             <Link href="#" color="primary">
-              terminos y condiciones
+              terminos y condiciones.
             </Link>
-            .
           </Typography>
         </Stack>
-        {/* <StyledBox id="image" /> */}
       </Container>
     </Box>
   );

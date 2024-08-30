@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function ReblLogo() {
     return (
@@ -12,9 +13,8 @@ export default function ReblLogo() {
                 fontFamily: 'Merriweather',
                 fontSize: '2rem',
                 fontWeight: 700,
-                color: 'black',
             }}>
-                rebl
+                <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>rebl</Link>
             </Typography>
         </Box>)
 }

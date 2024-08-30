@@ -50,7 +50,7 @@ export default function LandingPage() {
       <AppAppBar />
       <Hero />
       <div>
-        <LogoCollection />
+        {/* <LogoCollection /> */}
         <Features />
         <Divider />
         <Testimonials />

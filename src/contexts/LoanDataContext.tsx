@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
-interface LoanData {
+export interface LoanData {
     product_family: string;
     rate: number;
     notional: number;

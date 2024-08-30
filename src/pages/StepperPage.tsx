@@ -1,4 +1,4 @@
-import { Box, Container, Divider, Stack } from '@mui/material';
+import { Box, Divider, Stack } from '@mui/material';
 import React from 'react'
 import {
     createTheme,
@@ -9,7 +9,7 @@ import {
 import getMPTheme from '../theme/getMPTheme';
 import CssBaseline from '@mui/material/CssBaseline';
 import ReblLogo from '../components/ReblLogo';
-import StepperForm from '../components/StepperForm';
+import StepperForm from '../components/StepperForm/StepperForm';
 import { FormDataProvider } from '../contexts/FormDataContext';
 
 export default function StepperPage() {
@@ -22,8 +22,8 @@ export default function StepperPage() {
         backgroundImage:
             'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
         backgroundRepeat: 'no-repeat',
-        [theme.breakpoints.up('sm')]: {
-            height: '100dvh',
+        [theme.breakpoints.up('xs')]: {
+            height: '100vh',
         },
         ...theme.applyStyles('dark', {
             backgroundImage:

@@ -7,25 +7,27 @@ import StepContent from '@mui/material/StepContent';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+import StepOne from './StepOne';
+import StepTwo from './StepTwo';
+import StepThree from './StepThree';
 
-const steps = [
+interface StepConfig {
+  label: string;
+  component: React.FC<any>; // Use more specific typing if possible
+}
+
+const steps: StepConfig[] = [
   {
-    label: 'Select campaign settings',
-    description: `For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions, which networks
-              and geographical locations you want your ads to show on, and more.`,
+    label: 'Ingresa las caracteristicas iniciales de tu crédito',
+    component: StepOne,
   },
   {
-    label: 'Create an ad group',
-    description:
-      'An ad group contains one or more ads which target a shared set of keywords.',
+    label: 'Indicanos en que condiciones se encuentra tu crédito',
+    component: StepTwo,
   },
   {
-    label: 'Create an ad',
-    description: `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`,
+    label: 'Ingresa las codiciones de prepago',
+    component: StepThree,
   },
 ];
 
@@ -59,26 +61,11 @@ export default function StepperForm() {
               {step.label}
             </StepLabel>
             <StepContent>
-              <Typography>{step.description}</Typography>
-              <Box sx={{ mb: 2 }}>
-                <Button
-                  variant="contained"
-                  onClick={handleNext}
-                  sx={{ mt: 1, mr: 1 }}
-                >
-                  {index === steps.length - 1 ? 'Finish' : 'Continue'}
-                </Button>
-                <Button
-                  disabled={index === 0}
-                  onClick={handleBack}
-                  sx={{ mt: 1, mr: 1 }}
-                >
-                  Back
-                </Button>
-              </Box>
+              <step.component handleNext={handleNext} handleBack={handleBack} />
             </StepContent>
           </Step>
         ))}
+
       </Stepper>
       {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
