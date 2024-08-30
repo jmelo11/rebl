@@ -11,7 +11,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import Sitemark from './SitemarkIcon';
 import ReblLogo from './ReblLogo';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
@@ -34,6 +33,11 @@ export default function AppAppBar() {
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
   };
+
+  const handleDrawerClick = (section: string) => {
+    document.getElementById(section)?.scrollIntoView({ behavior: 'smooth' });
+    setOpen(false);
+  }
 
   return (
     <AppBar
@@ -95,20 +99,30 @@ export default function AppAppBar() {
                   </IconButton>
                 </Box>
                 <Divider sx={{ my: 3 }} />
-                <MenuItem>Features</MenuItem>
-                <MenuItem>Testimonials</MenuItem>
-                <MenuItem>Highlights</MenuItem>
-                <MenuItem>Pricing</MenuItem>
-                <MenuItem>FAQ</MenuItem>
-                <MenuItem>Blog</MenuItem>
+                <MenuItem onClick={() => handleDrawerClick('features')}>
+                  Servicios
+                </MenuItem>
+                <MenuItem onClick={() => handleDrawerClick('testimonials')}>
+                  Casos de exito
+                </MenuItem>
+                <MenuItem onClick={() => handleDrawerClick('highlights')}>
+                  Nuestros clientes
+                </MenuItem>
+                <MenuItem onClick={() => handleDrawerClick('pricing')}>
+                  Pricing
+                </MenuItem>
+                <MenuItem onClick={() => handleDrawerClick('faq')}>
+                  FAQ
+                </MenuItem>
+
                 <MenuItem>
                   <Button color="primary" variant="contained" fullWidth>
-                    Sign up
+                    Ingresa
                   </Button>
                 </MenuItem>
                 <MenuItem>
-                  <Button color="primary" variant="outlined" fullWidth>
-                    Sign in
+                  <Button color="primary" variant="outlined" fullWidth href='/signup'>
+                    Registrate
                   </Button>
                 </MenuItem>
               </Box>

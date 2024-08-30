@@ -90,21 +90,17 @@ export default function Hero() {
               products
             </Typography>
           </Typography> */}
-          <Typography variant="h1" sx={{ textAlign: 'center' }}>
-            Te ayudamos a mejorar tus condiciones&nbsp;
-            <Typography
-              component="span"
-              variant="h1"
-              sx={(theme) => ({
-                fontSize: 'inherit',
-                color: 'primary.main',
-                ...theme.applyStyles('dark', {
-                  color: 'primary.light',
-                }),
-              })}
-            >
-              financieras
-            </Typography>
+          <Typography
+            variant="h1"
+            sx={{
+              display: 'flex',
+              textAlign: 'center',
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: 'center',
+              fontSize: 'clamp(3rem, 10vw, 3.5rem)',
+            }}
+          >
+            Te ayudamos a mejorar tus condiciones financieras
           </Typography>
           <Typography
             sx={{
@@ -144,6 +140,7 @@ export default function Hero() {
               color="primary"
               size="small"
               sx={{ minWidth: 'fit-content' }}
+              href='/stepper'
             >
               Comenzemos
             </Button>

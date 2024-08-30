@@ -214,16 +214,16 @@ export const navigationCustomizations: Components<Theme> = {
       }),
     },
   },
-  MuiStepConnector: {
-    styleOverrides: {
-      line: ({ theme }) => ({
-        borderTop: '1px solid',
-        borderColor: theme.palette.divider,
-        flex: 1,
-        borderRadius: '99px',
-      }),
-    },
-  },
+  // MuiStepConnector: {
+  //   styleOverrides: {
+  //     line: ({ theme }) => ({
+  //       borderTop: '1px solid',
+  //       borderColor: theme.palette.divider,
+  //       flex: 1,
+  //       borderRadius: '99px',
+  //     }),
+  //   },
+  // },
   MuiStepIcon: {
     styleOverrides: {
       root: ({ theme }) => ({
