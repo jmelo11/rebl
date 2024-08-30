@@ -78,7 +78,7 @@ export default function Highlights() {
             textAlign: { sm: 'left', md: 'center' },
           }}
         >
-          <Typography component="h2" variant="h4" gutterBottom>
+          <Typography component="h2" variant="h2" gutterBottom>
             Highlights
           </Typography>
           <Typography variant="body1" sx={{ color: 'grey.400' }}>

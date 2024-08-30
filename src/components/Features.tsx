@@ -148,7 +148,7 @@ export default function Features() {
       <Box sx={{ width: { sm: '100%', md: '60%' } }}>
         <Typography
           component="h2"
-          variant="h4"
+          variant="h2"
           gutterBottom
           sx={{ color: 'text.primary' }}
         >
