@@ -38,6 +38,7 @@ export default function Hero() {
       id="hero"
       sx={(theme) => ({
         width: '100%',
+        py: { xs: 4, sm: 4 },
         backgroundRepeat: 'no-repeat',
         mt: 0,
         backgroundImage:

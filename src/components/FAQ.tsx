@@ -40,7 +40,7 @@ export default function FAQ() {
           textAlign: { sm: 'left', md: 'center' },
         }}
       >
-        Frequently asked questions
+        Preguntas frecuentes
       </Typography>
       <Box sx={{ width: '100%' }}>
         <Accordion
@@ -53,19 +53,23 @@ export default function FAQ() {
             id="panel1d-header"
           >
             <Typography component="h3" variant="subtitle2">
-              How do I contact customer support if I have a question or issue?
+              ¿Qué tan acertada es la informaciòn que ustedes entregan?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography
               variant="body2"
               gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
+              sx={{ maxWidth: { xs: '100%' } }}
             >
-              You can reach our customer support team by emailing
+              {/* You can reach our customer support team by emailing
               <Link> support@email.com </Link>
               or calling our toll-free number. We&apos;re here to assist you
-              promptly.
+              promptly. */}
+              Nuestras estimaciones se construyen con dos fuentes de información principales: la que tu nos provees
+              sobre tu crédito (tasa, monto, inicio, entre otros) y la información que existe publica en la CMF. Dado
+              que aun no tenemos información de bancos, es posible que existan diferencias entre nuestra información y lo
+              que te ofrescan estos ultimos.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -79,7 +83,7 @@ export default function FAQ() {
             id="panel2d-header"
           >
             <Typography component="h3" variant="subtitle2">
-              Can I return the product if it doesn&apos;t meet my expectations?
+              No cuento con toda la información que me solicitan en el formulario. ¿Qué puedo hacer?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -88,13 +92,17 @@ export default function FAQ() {
               gutterBottom
               sx={{ maxWidth: { sm: '100%', md: '70%' } }}
             >
-              Absolutely! We offer a hassle-free return policy. If you&apos;re not
+              {/* Absolutely! We offer a hassle-free return policy. If you&apos;re not
               completely satisfied, you can return the product within [number of
-              days] days for a full refund or exchange.
+              days] days for a full refund or exchange. */}
+              Dado que apuntas a realizar una estimación de tus condiciones financieras, información aproximada que puedas tener
+              puede ser suficiente para tener una idea general. Si lo que te interesa es contar con la maxima precisicion posible,
+              te recomendamos acudir a tu ejecutivo, ellos tienen la información que necesitas.
+
             </Typography>
           </AccordionDetails>
         </Accordion>
-        <Accordion
+        {/* <Accordion
           expanded={expanded === 'panel3'}
           onChange={handleChange('panel3')}
         >
@@ -144,7 +152,7 @@ export default function FAQ() {
               assistance.
             </Typography>
           </AccordionDetails>
-        </Accordion>
+        </Accordion> */}
       </Box>
     </Container>
   );

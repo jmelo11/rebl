@@ -4,8 +4,6 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepContent from '@mui/material/StepContent';
-import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
@@ -46,6 +44,8 @@ export default function StepperForm() {
     setActiveStep(0);
   };
 
+
+
   return (
     <Box sx={{ maxWidth: 400 }}>
       <Stepper activeStep={activeStep} orientation="vertical">
@@ -54,13 +54,13 @@ export default function StepperForm() {
             <StepLabel
               optional={
                 index === steps.length - 1 ? (
-                  <Typography variant="caption">Last step</Typography>
+                  <Typography variant="caption">Ultimo paso</Typography>
                 ) : null
               }
             >
               {step.label}
             </StepLabel>
-            <StepContent>
+            <StepContent TransitionProps={{ unmountOnExit: false }} >
               <step.component handleNext={handleNext} handleBack={handleBack} />
             </StepContent>
           </Step>
@@ -68,12 +68,13 @@ export default function StepperForm() {
 
       </Stepper>
       {activeStep === steps.length && (
-        <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
-          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-            Reset
-          </Button>
-        </Paper>
+        // <Paper square elevation={0} sx={{ p: 3 }}>
+        //   <Typography>All steps completed - you&apos;re finished</Typography>
+        //   <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+        //     Reset
+        //   </Button>
+        // </Paper>
+        <Box></Box>
       )}
     </Box>
   );

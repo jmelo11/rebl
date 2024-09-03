@@ -107,12 +107,10 @@ export default function Testimonials() {
           gutterBottom
           sx={{ color: 'text.primary' }}
         >
-          Testimonials
+          Testimonios
         </Typography>
         <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-          See what our customers love about our products. Discover how we excel in
-          efficiency, durability, and satisfaction. Join us for quality, innovation,
-          and reliable support.
+          Nuestros usuarios nos cuentan como Rebl los ayudó a mejorar su posición financiera y a reducir la asimetría de información a la hora de gestionar sus finanzas.
         </Typography>
       </Box>
       <Grid container spacing={2}>

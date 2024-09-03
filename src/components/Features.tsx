@@ -15,25 +15,25 @@ import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
 const items = [
   {
     icon: <ViewQuiltRoundedIcon />,
-    title: 'Dashboard',
+    title: 'Reporte',
     description:
-      'This item could provide a snapshot of the most important metrics or data points related to the product.',
+      'Obten una aproximación sobre tus intereses y capital pendiente de pago, un flujo de caja y cuanto llevas pagado de tu deuda.',
     imageLight: 'url("/static/images/templates/templates-images/dash-light.png")',
     imageDark: 'url("/static/images/templates/templates-images/dash-dark.png")',
   },
   {
     icon: <EdgesensorHighRoundedIcon />,
-    title: 'Mobile integration',
+    title: 'Información de mercado',
     description:
-      'This item could provide information about the mobile app version of the product.',
+      'Te entregamos la información de mercado que es relevante para tu situación, con comparativas y metricas claras que te permitan entender que es lo mejor para ti.',
     imageLight: 'url("/static/images/templates/templates-images/mobile-light.png")',
     imageDark: 'url("/static/images/templates/templates-images/mobile-dark.png")',
   },
   {
     icon: <DevicesRoundedIcon />,
-    title: 'Available on all platforms',
+    title: 'Recomendación',
     description:
-      'This item could let users know the product is available on all platforms, such as web, mobile, and desktop.',
+      'Nuetro algoritmo te entregará una recomendación de como puedes gestionar tu deuda de la mejor manera, con un plan de acción y una proyección de tus pagos.',
     imageLight: 'url("/static/images/templates/templates-images/devices-light.png")',
     imageDark: 'url("/static/images/templates/templates-images/devices-dark.png")',
   },
@@ -112,9 +112,9 @@ export function MobileLayout({
           style={
             items[selectedItemIndex]
               ? ({
-                  '--items-imageLight': items[selectedItemIndex].imageLight,
-                  '--items-imageDark': items[selectedItemIndex].imageDark,
-                } as any)
+                '--items-imageLight': items[selectedItemIndex].imageLight,
+                '--items-imageDark': items[selectedItemIndex].imageDark,
+              } as any)
               : {}
           }
         />
@@ -152,15 +152,14 @@ export default function Features() {
           gutterBottom
           sx={{ color: 'text.primary' }}
         >
-          Product features
+          Nuestro producto
         </Typography>
         <Typography
           variant="body1"
           sx={{ color: 'text.secondary', mb: { xs: 2, sm: 4 } }}
         >
-          Provide a brief overview of the key features of the product. For example,
-          you could list the number of features, their types or benefits, and
-          add-ons.
+          Nos interesa que tengas una vision clara de que sucede con tu deuda y que tengas la información relevante
+          para que puedas gestionarla de la mejor manera.
         </Typography>
       </Box>
       <Box
@@ -236,7 +235,7 @@ export default function Features() {
             height: 'var(--items-image-height)',
           }}
         >
-          <Card
+          {/* <Card
             variant="outlined"
             sx={{
               height: '100%',
@@ -259,13 +258,13 @@ export default function Features() {
               style={
                 items[selectedItemIndex]
                   ? ({
-                      '--items-imageLight': items[selectedItemIndex].imageLight,
-                      '--items-imageDark': items[selectedItemIndex].imageDark,
-                    } as any)
+                    '--items-imageLight': items[selectedItemIndex].imageLight,
+                    '--items-imageDark': items[selectedItemIndex].imageDark,
+                  } as any)
                   : {}
               }
             />
-          </Card>
+          </Card> */}
         </Box>
       </Box>
     </Container>

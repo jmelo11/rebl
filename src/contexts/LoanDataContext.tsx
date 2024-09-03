@@ -1,15 +1,18 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 export interface LoanData {
-    product_family: string;
+    productFamily: string;
     rate: number;
     notional: number;
     structure: string;
     currency: string;
-    payment_frequency: string;
-    payment_amount: number;
-    start_date: string; // You can use Date type if needed
-    end_date: string; // You can use Date type if needed
+    paymentFrequency: string;
+    paymentAmount: number;
+    startDate: string; // You can use Date type if needed
+    periodsMonths: number,
+    gracePeriods: number,
+    pendingPayments: number,
+    endDate: string; // You can use Date type if needed
     tenor: number;
 }
 

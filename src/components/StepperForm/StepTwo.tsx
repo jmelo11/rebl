@@ -14,7 +14,7 @@ interface StepProps {
 const StepTwo: React.FC<StepProps> = ({ handleNext, handleBack }) => {
 
     const [hasLatePayments, setHasLatePayments] = React.useState(false);
-    const [latePayments, setLatePayments] = React.useState<number | null>(null);
+    const [latePayments, setLatePayments] = React.useState<number | string>('');
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +23,7 @@ const StepTwo: React.FC<StepProps> = ({ handleNext, handleBack }) => {
 
         // If the user selects "No," reset latePayments to null
         if (!value) {
-            setLatePayments(null);
+            setLatePayments('');
         }
     };
 

@@ -39,6 +39,7 @@ export default function AppAppBar() {
     setOpen(false);
   }
 
+
   return (
     <AppBar
       position="fixed"
@@ -51,17 +52,17 @@ export default function AppAppBar() {
             <ReblLogo />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Button variant="text" color="info" size="small" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
-                Servicios
+                Nuestro producto
               </Button>
               <Button variant="text" color="info" size="small" onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}>
-                Casos de exito
+                Testimonios
               </Button>
               <Button variant="text" color="info" size="small" onClick={() => document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' })}>
-                Nuestros clientes
+                Highlights
               </Button>
-              <Button variant="text" color="info" size="small" onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}>
+              {/* <Button variant="text" color="info" size="small" onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}>
                 Pricing
-              </Button>
+              </Button> */}
               <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }} onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}>
                 FAQ
               </Button>
@@ -100,17 +101,17 @@ export default function AppAppBar() {
                 </Box>
                 <Divider sx={{ my: 3 }} />
                 <MenuItem onClick={() => handleDrawerClick('features')}>
-                  Servicios
+                  Nuestro producto
                 </MenuItem>
                 <MenuItem onClick={() => handleDrawerClick('testimonials')}>
-                  Casos de exito
+                  Testimonios
                 </MenuItem>
                 <MenuItem onClick={() => handleDrawerClick('highlights')}>
-                  Nuestros clientes
+                  Hightlights
                 </MenuItem>
-                <MenuItem onClick={() => handleDrawerClick('pricing')}>
+                {/* <MenuItem onClick={() => handleDrawerClick('pricing')}>
                   Pricing
-                </MenuItem>
+                </MenuItem> */}
                 <MenuItem onClick={() => handleDrawerClick('faq')}>
                   FAQ
                 </MenuItem>
@@ -130,6 +131,6 @@ export default function AppAppBar() {
           </Box>
         </StyledToolbar>
       </Container>
-    </AppBar>
+    </AppBar >
   );
 }
