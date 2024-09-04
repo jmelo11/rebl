@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, Stack, } from '@mui/material';
+import { fillLoanData, useLoanData } from '../../contexts/LoanDataContext';
 
 interface StepProps {
     handleNext: () => void;
@@ -16,6 +17,15 @@ const StepThree: React.FC<StepProps> = ({ handleNext, handleBack }) => {
     const handlePenaltyChange = (event: SelectChangeEvent) => {
         setPrepaymentPenalty(event.target.value);
     }
+
+    const { loanData, updateLoanData } = useLoanData();
+    
+    const handleEvaluate = () => {
+        updateLoanData({ ...loanData, prepaymentPenalty });
+        const finalLoan = fillLoanData(loanData);
+        handleNext();        
+    }
+
     return (
         <Box sx={{ mb: 2 }}>
             <Stack spacing={2} sx={{ pt: 1 }}>
@@ -47,7 +57,7 @@ const StepThree: React.FC<StepProps> = ({ handleNext, handleBack }) => {
                     </Button>
                     <Button
                         variant="contained"
-                        onClick={handleNext}
+                        onClick={handleEvaluate}
                         sx={{ mt: 1, mr: 1 }}
                         href='/mydebtreport'
                     >

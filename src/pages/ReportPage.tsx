@@ -31,13 +31,13 @@ export default function ReportPage() {
     }));
 
     const reportData: WebReportProps = {
-        interest: 1_000_00,
-        outstanding: 25_000_000,
-        current_rate: 10.25,
-        estimated_rate: 9.25,
-        current_payment: 10_000,
-        estimated_payment: 9_000,
-        prepayment_penalty: 200_000,
+        interest: '100.000',
+        outstanding: '25000000',
+        current_rate: '10.25',
+        estimated_rate: '9.25',
+        current_payment: '10000',
+        estimated_payment: '9000',
+        prepayment_penalty: '200000',
         currency_symbol: "$",
     }
 

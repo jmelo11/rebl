@@ -23,8 +23,8 @@ const StepOne: React.FC<StepProps> = ({ handleNext }) => {
     const [rate, setRate] = React.useState<string>('');
     const [startDate, setStartDate] = React.useState<Dayjs | null>(null);
     const [paymentAmount, setPaymentAmount] = React.useState<string>('');
-    const [months, setMonths] = React.useState<number | string>(''); // Empty string to start
-    const [gracePeriod, setGracePeriod] = React.useState<number | string>(''); // Empty string to start
+    const [months, setMonths] = React.useState<string>(''); // Empty string to start
+    const [gracePeriod, setGracePeriod] = React.useState<string>(''); // Empty string to start
 
     const { loanData, updateLoanData } = useLoanData();
 
@@ -63,8 +63,8 @@ const StepOne: React.FC<StepProps> = ({ handleNext }) => {
     };
 
     const handleMonthsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setMonths(value !== '' ? parseInt(value) : ''); // Store as number or empty string
+
+        setMonths(event.target.value as string); // Store as number or empty string
     };
 
     const handleCurrencyChange = (event: SelectChangeEvent) => {
@@ -72,8 +72,7 @@ const StepOne: React.FC<StepProps> = ({ handleNext }) => {
     };
 
     const handleGracePeriodChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        setGracePeriod(value !== '' ? parseInt(value) : '');
+        setGracePeriod(event.target.value as string); // Store as number or empty string
     };
 
     const handleNextAndUpdateLoanData = () => {
@@ -81,11 +80,11 @@ const StepOne: React.FC<StepProps> = ({ handleNext }) => {
             productFamily: prodFam,
             currency,
             notional: parseFloat(amount.replace(/\./g, '')),
-            rate: parseFloat(rate.replace(',', '.')),
+            rate: parseFloat(rate.replace(',', '.')) / 100,
             paymentAmount: parseFloat(paymentAmount.replace(/\./g, '')),
             startDate: startDate ? startDate.format('MM-DD-YYYY') : '',
-            periodsMonths: months as number,
-            gracePeriods: gracePeriod as number,
+            periodsInMonths: months as string,
+            gracePeriods: gracePeriod as string,
         });
         handleNext();
         console.log(loanData);
@@ -108,8 +107,8 @@ const StepOne: React.FC<StepProps> = ({ handleNext }) => {
                         label="Familia de producto"
                         onChange={handleProdFamChange}
                     >
-                        <MenuItem value={0}>Consumo</MenuItem>
-                        <MenuItem value={1}>Hipotecario</MenuItem>
+                        <MenuItem value={'Consumo'}>Consumo</MenuItem>
+                        <MenuItem value={'Hipotecario'}>Hipotecario</MenuItem>
                     </Select>
                 </FormControl>
 
@@ -122,8 +121,8 @@ const StepOne: React.FC<StepProps> = ({ handleNext }) => {
                         label="Moneda"
                         onChange={handleCurrencyChange}
                     >
-                        <MenuItem value={0}>CLP</MenuItem>
-                        <MenuItem value={1}>UF</MenuItem>
+                        <MenuItem value={'CLP'}>CLP</MenuItem>
+                        <MenuItem value={'CLF'}>UF</MenuItem>
                     </Select>
                 </FormControl>
 
@@ -131,7 +130,9 @@ const StepOne: React.FC<StepProps> = ({ handleNext }) => {
                     <InputLabel htmlFor="outlined-adornment-amount">Monto</InputLabel>
                     <OutlinedInput
                         id="outlined-adornment-amount"
-                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                        startAdornment={<InputAdornment position="start">
+                            {currency === 'CLP' ? '$' : 'UF'}
+                        </InputAdornment>}
                         label="Monto"
                         value={amount}
                         inputProps={{ inputMode: 'numeric' }}
@@ -155,7 +156,7 @@ const StepOne: React.FC<StepProps> = ({ handleNext }) => {
                     <InputLabel htmlFor="outlined-adornment-payment-amount">Cuota</InputLabel>
                     <OutlinedInput
                         id="outlined-adornment-payment-amount"
-                        startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                        startAdornment={<InputAdornment position="start">{currency === 'CLP' ? '$' : 'UF'}</InputAdornment>}
                         label="Cuota"
                         value={paymentAmount}
                         inputProps={{ inputMode: 'numeric' }}

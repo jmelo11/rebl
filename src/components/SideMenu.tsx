@@ -11,7 +11,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import SelectContent from './SelectContent';
 import MenuContent from './MenuContent';
-import CardAlert from './CardAlert';
+import CardAlert from './Report/CardAlert';
 import OptionsMenu from './OptionsMenu';
 import ReblLogo from './ReblLogo';
 
