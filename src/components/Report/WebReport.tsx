@@ -1,10 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { Card, CardContent, CardHeader, Stack, Typography } from '@mui/material';
-import DeltaNumericStatProps from './DeltaNumericStat';
+import { Button, Card, CardContent, CardHeader, Stack, Typography } from '@mui/material';
 import SimpleNumericStat from './SimpleNumericStat';
-import CardAlert from './CardAlert';
 import FeedbackCard from './FeedbackCard';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
+import ProductOptionsMenu from '../ProductOptionsMenu';
+import SyncIcon from '@mui/icons-material/Sync';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 interface InfoCardProps {
     title: string;
@@ -36,35 +38,72 @@ function InfoCard(props: InfoCardProps) {
 
 
 export interface WebReportProps {
-    interest: string,
-    outstanding: string,
-    current_rate: string,
-    estimated_rate: string,
-    current_payment: string,
-    estimated_payment: string,
-    prepayment_penalty: string,
+    prodType: string,
+    prodFam: string,
+    reportNumber: number,
+    interest: number,
+    outstanding: number,
+    current_rate: number,
+    estimated_rate: number,
+    current_payment: number,
+    estimated_payment: number,
+    prepayment_penalty: number,
     currency_symbol: string,
+}
+
+function formatCurrency(value: number, currency_symbol: string) {
+    // add decimal places, thousands separator and currency symbol
+    return currency_symbol + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 
 export function WebReport(props: WebReportProps) {
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            {/* <Stack spacing={2} direction={{ xs: 'column', md: 'row' }}> */}
-            <Stack spacing={2} sx={{ py: { xs: 2, sm: 2 } }}>
+
+        <Stack spacing={1} sx={{
+            py: { xs: 2, sm: 2 },
+        }}>
+            <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} sx={{ justifyContent: 'space-between' }}>
                 <Typography variant="h4" gutterBottom>
-                    Reporte n° 123456
+                    Reporte {props.prodFam} N° {props.reportNumber}
                 </Typography>
-                <Typography variant="caption" gutterBottom>
-                    12 de octubre de 2021
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                    Aqui tienes un resumen de las condiciones actuales de tu prestamo y información relevante para que puedas tomar decisiones informadas.
-                </Typography>
+                <Stack direction={'row'} spacing={1} sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                }}>
+
+                    <Button variant='contained' color='primary' size='small'
+                        startIcon={<SyncIcon />}
+                    >
+                        Re-eval
+                    </Button>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DatePicker
+                            label="Fechas disponibles"
+                            format='DD/MM/YYYY'
+                            slotProps={{ textField: { size: 'small' } }}
+                        />
+                    </LocalizationProvider>
+                    <ProductOptionsMenu />
+
+                </Stack>
+            </Stack>
+            <Typography variant="body1" gutterBottom>
+                Aqui tienes un resumen de las condiciones actuales de tu prestamo y información relevante para que puedas tomar decisiones informadas.
+            </Typography>
+
+            <Stack spacing={1} sx={{
+                maxWidth: '1000px',
+                margin: '0 auto', // Center the stack horizontally
+                alignSelf: 'center',
+                py: 2,
+            }}>
+
                 <Stack spacing={1} direction={{ xs: 'column', md: 'row' }}>
                     <SimpleNumericStat
                         title={'Interes pendiente'}
                         subtitle={'Lo que te falta pagar por la tasa de interes hasta el vencimiento.'}
-                        value='$100.000'
+                        value={formatCurrency(props.interest, props.currency_symbol)}
                         withModal>
                         <Typography component="h2" variant="subtitle2" gutterBottom>
                             ¿Qué es el interes pendiente?
@@ -80,7 +119,7 @@ export function WebReport(props: WebReportProps) {
                     <SimpleNumericStat
                         title={'Capital pendiente'}
                         subtitle={'Lo que te falta pagar por lo que has pedido de financiamiento.'}
-                        value='$100.000'
+                        value={formatCurrency(props.outstanding, props.currency_symbol)}
                         withModal >
                         <Typography component="h2" variant="subtitle2" gutterBottom>
                             ¿Qué es el capital pendiente?
@@ -94,8 +133,9 @@ export function WebReport(props: WebReportProps) {
                     </SimpleNumericStat>
                     <FeedbackCard />
                 </Stack>
+
                 <Stack spacing={1} direction={'column'}>
-                    <InfoCard title="Interes pendiente" subtitle="Lo que has pagado por la tasa de interes">
+                    {/* <InfoCard title="Interes pendiente" subtitle="Lo que has pagado por la tasa de interes">
                         <Typography variant="h5" gutterBottom sx={{
                             textAlign: 'right',
                         }}>
@@ -179,10 +219,10 @@ export function WebReport(props: WebReportProps) {
                         }}>
                             +/-{props.currency_symbol}{props.prepayment_penalty}
                         </Typography>
-                    </InfoCard>
+                    </InfoCard> */}
                 </Stack>
             </Stack>
-            {/* </Stack> */}
-        </Box>
+        </Stack>
+
     );
 }

@@ -8,7 +8,7 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 
 export default function FeedbackCard() {
     return (
-        <Card variant="outlined" sx={{ m: 1.5, p: 1.5 }}>
+        <Card variant="outlined" sx={{ flexGrow: 1, width: '100%' }}>
             <CardContent>
                 <AutoAwesomeRoundedIcon fontSize="small" />
                 <Typography gutterBottom sx={{ fontWeight: 600 }}>
@@ -17,7 +17,7 @@ export default function FeedbackCard() {
                 <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
                     ¿Tienes alguna métrica que te gustaria ver en el reporte?
                 </Typography>
-                <Button variant="contained" size="small" fullWidth>
+                <Button variant="contained" size="small" fullWidth href='/feedback'>
                     Feedback
                 </Button>
             </CardContent>

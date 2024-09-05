@@ -9,11 +9,11 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import SelectContent from './SelectContent';
 import MenuContent from './MenuContent';
-import CardAlert from './Report/CardAlert';
 import OptionsMenu from './OptionsMenu';
 import ReblLogo from './ReblLogo';
+import CardAlert from './Report/CardAlert';
+import SelectContent from './SelectContent';
 
 const drawerWidth = 240;
 
@@ -44,12 +44,11 @@ export default function SideMenu() {
                     p: 1.5,
                 }}
             >
-                {/* <SelectContent /> */}
                 <ReblLogo />
             </Box>
             <Divider />
             <MenuContent />
-            {/* <CardAlert /> */}
+            <CardAlert />
             <Stack
                 direction="row"
                 sx={{

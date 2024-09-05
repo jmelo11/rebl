@@ -11,6 +11,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import ReblLogo from '../components/ReblLogo';
 import { WebReport, WebReportProps } from '../components/Report/WebReport';
 import SideMenu from '../components/SideMenu';
+import TopBar from '../components/TopBar';
 
 export default function ReportPage() {
     const [mode, setMode] = React.useState<PaletteMode>('light');
@@ -31,13 +32,16 @@ export default function ReportPage() {
     }));
 
     const reportData: WebReportProps = {
-        interest: '100.000',
-        outstanding: '25000000',
-        current_rate: '10.25',
-        estimated_rate: '9.25',
-        current_payment: '10000',
-        estimated_payment: '9000',
-        prepayment_penalty: '200000',
+        prodType: 'Loan',
+        prodFam: 'Consumo',
+        reportNumber: 123,
+        interest: 100000,
+        outstanding: 25000000,
+        current_rate: 0.1025,
+        estimated_rate: 0.0925,
+        current_payment: 10000,
+        estimated_payment: 9000,
+        prepayment_penalty: 200000,
         currency_symbol: "$",
     }
 
@@ -47,7 +51,10 @@ export default function ReportPage() {
             <BaseContainer direction="column">
                 <Box sx={{ display: 'flex', width: '100%', p: 2, justifyContent: 'center' }}>
                     <SideMenu />
-                    <WebReport {...reportData} />
+                    <Stack direction="column" spacing={2} sx={{ width: '100%', p: 2 }}>
+                        <TopBar path={['Reportes', 'Crédito N° 123']} />
+                        <WebReport {...reportData} />
+                    </Stack>
                 </Box>
             </BaseContainer>
         </ThemeProvider >

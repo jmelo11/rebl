@@ -12,6 +12,7 @@ import ReblLogo from '../components/ReblLogo';
 import StepperForm from '../components/StepperForm/StepperForm';
 import { LoanDataProvider } from '../contexts/LoanDataContext';
 import SideMenu from '../components/SideMenu';
+import TopBar from '../components/TopBar';
 
 export default function StepperPage() {
 
@@ -49,7 +50,17 @@ export default function StepperPage() {
                 }}>
                     <LoanDataProvider>
                         <SideMenu />
-                        <StepperForm />
+                        <Stack direction="column" spacing={2} sx={{ width: '100%', p: 2 }}>
+                            <TopBar path={['Nueva evaluación']} />
+                            <Box sx={{
+                                display: 'flex',
+                                width: '100%',
+                                p: 2,
+                                justifyContent: 'center'
+                            }} >
+                                <StepperForm />
+                            </Box>
+                        </Stack>
                     </LoanDataProvider>
                 </Box>
             </StepperContainer>
