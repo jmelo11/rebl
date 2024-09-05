@@ -48,7 +48,7 @@ export default function BaseDashboard({ children }: BaseDashboardProps) {
                     <TopBar path={path} onMenuClick={handleDrawerToggle} />
 
                     {/* Content area */}
-                    <Box sx={{ flexGrow: 1, p: 2}}>
+                    <Box sx={{ flexGrow: 1, p: 2 }}>
                         {children}
                     </Box>
                 </Stack>
