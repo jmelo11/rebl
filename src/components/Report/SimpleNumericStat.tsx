@@ -46,7 +46,7 @@ export default function SimpleNumericStat(props: SimpleNumericStatProps) {
         <Card variant="outlined" sx={{
             display: 'flex',
             flexDirection: 'column',
-            flexGrow: 1, width: '100%'
+            flexGrow: 1, width: '100%',
         }}>
             < CardContent sx={{
                 display: 'flex',

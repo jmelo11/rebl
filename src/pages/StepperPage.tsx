@@ -13,6 +13,7 @@ import StepperForm from '../components/StepperForm/StepperForm';
 import { LoanDataProvider } from '../contexts/LoanDataContext';
 import SideMenu from '../components/SideMenu';
 import TopBar from '../components/TopBar';
+import BaseDashboard from '../components/BaseDashboard';
 
 export default function StepperPage() {
 
@@ -37,32 +38,30 @@ export default function StepperPage() {
         <ThemeProvider theme={StepperTheme}>
             <CssBaseline />
             <StepperContainer direction="column">
-                { /* put a top bar with the logo, then in the center the stepper form */}
-                {/* <Box sx={{ display: 'flex', width: '100%', p: 2 }} >
-                    <ReblLogo />
-                </Box> */}
-                <Divider />
+                {/* <Divider />
                 <Box sx={{
                     display: 'flex',
                     width: '100%',
                     p: 2,
                     justifyContent: 'center'
-                }}>
-                    <LoanDataProvider>
-                        <SideMenu />
+                }}> */}
+                <LoanDataProvider>
+                    {/* <SideMenu />
                         <Stack direction="column" spacing={2} sx={{ width: '100%', p: 2 }}>
-                            <TopBar path={['Nueva evaluación']} />
-                            <Box sx={{
-                                display: 'flex',
-                                width: '100%',
-                                p: 2,
-                                justifyContent: 'center'
-                            }} >
-                                <StepperForm />
-                            </Box>
-                        </Stack>
-                    </LoanDataProvider>
-                </Box>
+                            <TopBar path={['Nueva evaluación']} /> */}
+                    <BaseDashboard>
+                        <Box sx={{
+                            display: 'flex',
+                            width: '100%',
+                            p: 2,
+                            justifyContent: 'center'
+                        }} >
+                            <StepperForm />
+                        </Box>
+                    </BaseDashboard>
+                    {/* </Stack> */}
+                </LoanDataProvider>
+                {/* </Box> */}
             </StepperContainer>
         </ThemeProvider >
     )

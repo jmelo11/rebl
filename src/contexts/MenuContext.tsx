@@ -1,8 +1,11 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 
-// Context to manage the selected menu state
-const MenuContext = createContext<any>(null);
+interface MenuContextType {
+    selectedIndex: number;
+    setSelectedIndex: (index: number) => void;
+}
+
+const MenuContext = createContext<MenuContextType | undefined>(undefined);
 
 export function MenuProvider({ children }: { children: ReactNode }) {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -14,4 +17,10 @@ export function MenuProvider({ children }: { children: ReactNode }) {
     );
 }
 
-export const useMenu = () => useContext(MenuContext);
+export const useMenu = () => {
+    const context = useContext(MenuContext);
+    if (!context) {
+        throw new Error('useMenu must be used within a MenuProvider');
+    }
+    return context;
+};

@@ -6,14 +6,11 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import MenuContent from './MenuContent';
 import OptionsMenu from './OptionsMenu';
 import ReblLogo from './ReblLogo';
 import CardAlert from './Report/CardAlert';
-import SelectContent from './SelectContent';
 
 const drawerWidth = 240;
 
@@ -21,22 +18,23 @@ const Drawer = styled(MuiDrawer)({
     width: drawerWidth,
     flexShrink: 0,
     boxSizing: 'border-box',
-    mt: 10,
     [`& .${drawerClasses.paper}`]: {
         width: drawerWidth,
         boxSizing: 'border-box',
     },
 });
 
-export default function SideMenu() {
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
+export default function SideMenu({ mobileOpen, handleDrawerToggle }: { mobileOpen: boolean, handleDrawerToggle: () => void }) {
 
     const drawerContent = (
-        <>
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%', // Ensure the drawer takes the full height
+                overflowY: 'auto', // Allow scrolling if content exceeds the height
+            }}
+        >
             <Box
                 sx={{
                     display: 'flex',
@@ -75,55 +73,46 @@ export default function SideMenu() {
                 </Box>
                 <OptionsMenu />
             </Stack>
-        </>
+        </Box>
     );
 
     return (
         <>
-            <Box
-                component="nav"
-                sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
-                aria-label="mailbox folders"
+            {/* Mobile Drawer */}
+            <SwipeableDrawer
+                container={typeof window !== 'undefined' ? document.body : undefined}
+                variant="temporary"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                onOpen={handleDrawerToggle}
+                ModalProps={{
+                    keepMounted: true, // Keeps drawer in DOM for better performance
+                }}
+                sx={{
+                    display: { xs: 'block', md: 'none' },
+                    [`& .${drawerClasses.paper}`]: {
+                        width: drawerWidth,
+                        height: '100%', // Ensure the drawer takes full height on small screens
+                        overflowY: 'auto', // Scroll if content exceeds the screen height
+                    },
+                }}
             >
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-                <SwipeableDrawer
-                    container={typeof window !== 'undefined' ? document.body : undefined}
-                    variant="temporary"
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    onOpen={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                    sx={{
-                        display: { xs: 'block', md: 'none' },
-                        [`& .${drawerClasses.paper}`]: { width: drawerWidth },
-                    }}
-                >
-                    {drawerContent}
-                </SwipeableDrawer>
-                <Drawer
-                    variant="permanent"
-                    sx={{
-                        display: { xs: 'none', md: 'block' },
-                        [`& .${drawerClasses.paper}`]: {
-                            backgroundColor: 'background.paper',
-                        },
-                    }}
-                    open
-                >
-                    {drawerContent}
-                </Drawer>
-            </Box>
-            <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                sx={{ mr: 2, display: { md: 'none' } }}
+                {drawerContent}
+            </SwipeableDrawer>
+
+            {/* Permanent Drawer for larger screens */}
+            <Drawer
+                variant="permanent"
+                sx={{
+                    display: { xs: 'none', md: 'block' },
+                    [`& .${drawerClasses.paper}`]: {
+                        backgroundColor: 'background.paper',
+                    },
+                }}
+                open
             >
-                <MenuIcon />
-            </IconButton>
+                {drawerContent}
+            </Drawer>
         </>
     );
 }

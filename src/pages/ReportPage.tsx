@@ -12,6 +12,7 @@ import ReblLogo from '../components/ReblLogo';
 import { WebReport, WebReportProps } from '../components/Report/WebReport';
 import SideMenu from '../components/SideMenu';
 import TopBar from '../components/TopBar';
+import BaseDashboard from '../components/BaseDashboard';
 
 export default function ReportPage() {
     const [mode, setMode] = React.useState<PaletteMode>('light');
@@ -49,13 +50,10 @@ export default function ReportPage() {
         <ThemeProvider theme={BaseTheme}>
             <CssBaseline />
             <BaseContainer direction="column">
-                <Box sx={{ display: 'flex', width: '100%', p: 2, justifyContent: 'center' }}>
-                    <SideMenu />
-                    <Stack direction="column" spacing={2} sx={{ width: '100%', p: 2 }}>
-                        <TopBar path={['Reportes', 'Crédito N° 123']} />
-                        <WebReport {...reportData} />
-                    </Stack>
-                </Box>
+                {/* <Box sx={{ display: 'flex', width: '100%', p: 2, justifyContent: 'center' }}> */}
+                <BaseDashboard>
+                    <WebReport {...reportData} />
+                </BaseDashboard>
             </BaseContainer>
         </ThemeProvider >
     )

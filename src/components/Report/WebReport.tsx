@@ -1,12 +1,13 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { Button, Card, CardContent, CardHeader, Stack, Typography } from '@mui/material';
+import { Button, Card, CardContent, CardHeader, IconButton, Stack, Typography } from '@mui/material';
 import SimpleNumericStat from './SimpleNumericStat';
 import FeedbackCard from './FeedbackCard';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import ProductOptionsMenu from '../ProductOptionsMenu';
 import SyncIcon from '@mui/icons-material/Sync';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { useTheme } from '@mui/material/styles';
 
 interface InfoCardProps {
     title: string;
@@ -57,26 +58,24 @@ function formatCurrency(value: number, currency_symbol: string) {
 }
 
 export function WebReport(props: WebReportProps) {
+    const theme = useTheme();
     return (
 
-        <Stack spacing={1} sx={{
-            py: { xs: 2, sm: 2 },
-        }}>
-            <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} sx={{ justifyContent: 'space-between' }}>
+        <Stack spacing={1}>
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{
+                justifyContent: 'space-between',
+                alignItems: { xs: 'center', sm: 'flex-start' }
+            }}>
                 <Typography variant="h4" gutterBottom>
                     Reporte {props.prodFam} N° {props.reportNumber}
                 </Typography>
                 <Stack direction={'row'} spacing={1} sx={{
                     display: 'flex',
-                    justifyContent: 'space-between',
                     alignItems: 'center',
                 }}>
-
-                    <Button variant='contained' color='primary' size='small'
-                        startIcon={<SyncIcon />}
-                    >
-                        Re-eval
-                    </Button>
+                    <IconButton size='small'>
+                        <SyncIcon />
+                    </IconButton>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             label="Fechas disponibles"
@@ -85,7 +84,6 @@ export function WebReport(props: WebReportProps) {
                         />
                     </LocalizationProvider>
                     <ProductOptionsMenu />
-
                 </Stack>
             </Stack>
             <Typography variant="body1" gutterBottom>
@@ -133,7 +131,6 @@ export function WebReport(props: WebReportProps) {
                     </SimpleNumericStat>
                     <FeedbackCard />
                 </Stack>
-
                 <Stack spacing={1} direction={'column'}>
                     {/* <InfoCard title="Interes pendiente" subtitle="Lo que has pagado por la tasa de interes">
                         <Typography variant="h5" gutterBottom sx={{
@@ -222,7 +219,7 @@ export function WebReport(props: WebReportProps) {
                     </InfoCard> */}
                 </Stack>
             </Stack>
-        </Stack>
+        </Stack >
 
     );
 }

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // React Router hook for navigation
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -10,6 +10,7 @@ import AnalyticsRoundedIcon from '@mui/icons-material/AnalyticsRounded';
 import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import { useMenu } from '../contexts/MenuContext';
 
 const mainListItems = [
     { text: 'Inicio', icon: <HomeRoundedIcon />, route: '/' },
@@ -22,13 +23,23 @@ const secondaryListItems = [
 ];
 
 export default function MenuContent() {
-    const [selectedIndex, setSelectedIndex] = useState(0);
+    const { selectedIndex, setSelectedIndex } = useMenu();
     const navigate = useNavigate();
+    const location = useLocation();
 
+    // Handle click on menu item and navigation
     const handleListItemClick = (index: number, route: string) => {
-        setSelectedIndex(index); // Update selected menu item
-        navigate(route); // Navigate to the route
+        setSelectedIndex(index);
+        navigate(route);
     };
+
+    // Set the selectedIndex based on the current route path
+    React.useEffect(() => {
+        const currentIndex = mainListItems.findIndex(item => item.route === location.pathname);
+        if (currentIndex >= 0) {
+            setSelectedIndex(currentIndex);
+        }
+    }, [location.pathname, setSelectedIndex]);
 
     return (
         <Stack sx={{ flexGrow: 1, p: 1, justifyContent: 'space-between' }}>
@@ -52,7 +63,7 @@ export default function MenuContent() {
                 {secondaryListItems.map((item, index) => (
                     <ListItem key={index + mainListItems.length} disablePadding sx={{ display: 'block' }}>
                         <ListItemButton
-                            selected={selectedIndex === index + mainListItems.length} // Highlight secondary item if selected
+                            selected={selectedIndex === index + mainListItems.length} // Highlight secondary item
                             onClick={() => handleListItemClick(index + mainListItems.length, item.route)} // Handle item click
                         >
                             <ListItemIcon>{item.icon}</ListItemIcon>
