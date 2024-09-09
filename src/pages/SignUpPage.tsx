@@ -18,8 +18,14 @@ import {
     styled,
     PaletteMode,
 } from '@mui/material/styles';
-import { GoogleIcon, FacebookIcon, SitemarkIcon } from '../components/CustomIcons';
+import { GoogleIcon, FacebookIcon } from '../components/CustomIcons';
 import getMPTheme from '../theme/getMPTheme';
+import ReblLogo from '../components/ReblLogo';
+
+import { Amplify } from "aws-amplify"
+import { signUp } from "aws-amplify/auth"
+import outputs from "../../amplify_outputs.json"
+
 
 const Card = styled(MuiCard)(({ theme }) => ({
     display: 'flex',
@@ -62,8 +68,17 @@ export default function SignUpPage() {
     const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
     const [passwordError, setPasswordError] = React.useState(false);
     const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-    const [nameError, setNameError] = React.useState(false);
-    const [nameErrorMessage, setNameErrorMessage] = React.useState('');
+
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        await signUp({
+            username: data.get('email') as string,
+            password: data.get('password') as string,
+
+        });
+    }
+
     // This code only runs on the client side, to determine the system color preference
     React.useEffect(() => {
         // Check if there is a preferred mode in localStorage
@@ -83,12 +98,13 @@ export default function SignUpPage() {
         const email = document.getElementById('email') as HTMLInputElement;
         const password = document.getElementById('password') as HTMLInputElement;
         const name = document.getElementById('name') as HTMLInputElement;
+        const userName = document.getElementById('userName') as HTMLInputElement;
 
         let isValid = true;
 
         if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
             setEmailError(true);
-            setEmailErrorMessage('Please enter a valid email address.');
+            setEmailErrorMessage('Ingresa una dirección de correo válida.');
             isValid = false;
         } else {
             setEmailError(false);
@@ -97,35 +113,25 @@ export default function SignUpPage() {
 
         if (!password.value || password.value.length < 6) {
             setPasswordError(true);
-            setPasswordErrorMessage('Password must be at least 6 characters long.');
+            setPasswordErrorMessage('Password debe tener al menos 6 caracteres.');
             isValid = false;
         } else {
             setPasswordError(false);
             setPasswordErrorMessage('');
         }
-
-        if (!name.value || name.value.length < 1) {
-            setNameError(true);
-            setNameErrorMessage('Name is required.');
-            isValid = false;
-        } else {
-            setNameError(false);
-            setNameErrorMessage('');
-        }
-
         return isValid;
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            name: data.get('name'),
-            lastName: data.get('lastName'),
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
+    // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    //     event.preventDefault();
+    //     const data = new FormData(event.currentTarget);
+    //     console.log({
+    //         name: data.get('name'),
+    //         lastName: data.get('lastName'),
+    //         email: data.get('email'),
+    //         password: data.get('password'),
+    //     });
+    // };
 
     return (
         <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}>
@@ -139,40 +145,30 @@ export default function SignUpPage() {
                     }}
                 >
                     <Card variant="outlined">
-                        <SitemarkIcon />
-                        <Typography
-                            component="h1"
-                            variant="h4"
-                            sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
-                        >
-                            Sign up
-                        </Typography>
+                        <Stack direction={'row'} spacing={1} sx={{
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}>
+                            <ReblLogo white />
+                            <Typography
+                                variant="h3"
+                            >
+                                Registrate
+                            </Typography>
+                        </Stack>
                         <Box
                             component="form"
                             onSubmit={handleSubmit}
                             sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
                         >
-                            <FormControl>
-                                <FormLabel htmlFor="name">Full name</FormLabel>
-                                <TextField
-                                    autoComplete="name"
-                                    name="name"
-                                    required
-                                    fullWidth
-                                    id="name"
-                                    placeholder="Jon Snow"
-                                    error={nameError}
-                                    helperText={nameErrorMessage}
-                                    color={nameError ? 'error' : 'primary'}
-                                />
-                            </FormControl>
+
                             <FormControl>
                                 <FormLabel htmlFor="email">Email</FormLabel>
                                 <TextField
                                     required
                                     fullWidth
                                     id="email"
-                                    placeholder="your@email.com"
+                                    placeholder="tu@email.com"
                                     name="email"
                                     autoComplete="email"
                                     variant="outlined"
@@ -199,7 +195,7 @@ export default function SignUpPage() {
                             </FormControl>
                             <FormControlLabel
                                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                label="I want to receive updates via email."
+                                label="Quiero recibir noticias y ofertas de Rebl a este email."
                             />
                             <Button
                                 type="submit"
@@ -207,23 +203,23 @@ export default function SignUpPage() {
                                 variant="contained"
                                 onClick={validateInputs}
                             >
-                                Sign up
+                                Registrarme
                             </Button>
                             <Typography sx={{ textAlign: 'center' }}>
-                                Already have an account?{' '}
+                                ¿Ya tienes una cuenta?{' '}
                                 <span>
                                     <Link
                                         href="/material-ui/getting-started/templates/sign-in/"
                                         variant="body2"
                                         sx={{ alignSelf: 'center' }}
                                     >
-                                        Sign in
+                                        Inicia sesión
                                     </Link>
                                 </span>
                             </Typography>
                         </Box>
                         <Divider>
-                            <Typography sx={{ color: 'text.secondary' }}>or</Typography>
+                            <Typography sx={{ color: 'text.secondary' }}>o tambien</Typography>
                         </Divider>
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                             <Button
@@ -233,7 +229,7 @@ export default function SignUpPage() {
                                 onClick={() => alert('Sign up with Google')}
                                 startIcon={<GoogleIcon />}
                             >
-                                Sign up with Google
+                                Inicia sesión con Google
                             </Button>
                             <Button
                                 type="submit"
@@ -242,12 +238,12 @@ export default function SignUpPage() {
                                 onClick={() => alert('Sign up with Facebook')}
                                 startIcon={<FacebookIcon />}
                             >
-                                Sign up with Facebook
+                                Inicia sesión con Facebook
                             </Button>
                         </Box>
                     </Card>
                 </Stack>
             </SignUpContainer>
-        </ThemeProvider>
+        </ThemeProvider >
     );
 }
