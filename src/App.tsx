@@ -5,6 +5,11 @@ import StepperPage from './pages/StepperPage';
 import ReportPage from './pages/ReportPage';
 import FeedbackPage from './pages/FeedbackPage';
 
+import outputs from "../amplify_outputs.json"
+import { Amplify } from "aws-amplify"
+
+Amplify.configure(outputs)
+
 function App() {
   return (
 

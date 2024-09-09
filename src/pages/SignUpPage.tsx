@@ -24,7 +24,6 @@ import ReblLogo from '../components/ReblLogo';
 
 import { Amplify } from "aws-amplify"
 import { signUp } from "aws-amplify/auth"
-import outputs from "../../amplify_outputs.json"
 
 
 const Card = styled(MuiCard)(({ theme }) => ({
