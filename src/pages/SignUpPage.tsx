@@ -1,10 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import Link from '@mui/material/Link';
@@ -21,10 +19,9 @@ import {
 import { GoogleIcon, FacebookIcon } from '../components/CustomIcons';
 import getMPTheme from '../theme/getMPTheme';
 import ReblLogo from '../components/ReblLogo';
-
-import { Amplify } from "aws-amplify"
 import { signUp } from "aws-amplify/auth"
-
+import { Alert } from '@mui/material';
+import { signInWithRedirect } from 'aws-amplify/auth';
 
 const Card = styled(MuiCard)(({ theme }) => ({
     display: 'flex',
@@ -60,21 +57,28 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 
 export default function SignUpPage() {
     const [mode, setMode] = React.useState<PaletteMode>('light');
-    const [showCustomTheme, setShowCustomTheme] = React.useState(true);
+    const [showCustomTheme] = React.useState(true);
     const defaultTheme = createTheme({ palette: { mode } });
     const SignUpTheme = createTheme(getMPTheme(mode));
     const [emailError, setEmailError] = React.useState(false);
     const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
     const [passwordError, setPasswordError] = React.useState(false);
     const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
+    const [verficiationRequired, setVerificationRequired] = React.useState(false);
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        await signUp({
+        const { isSignUpComplete, userId, nextStep } = await signUp({
             username: data.get('email') as string,
             password: data.get('password') as string,
         });
+
+        if (isSignUpComplete) {
+            setVerificationRequired(false);
+        } else {
+            setVerificationRequired(true);
+        }
     }
 
     // This code only runs on the client side, to determine the system color preference
@@ -92,11 +96,39 @@ export default function SignUpPage() {
         }
     }, []);
 
+    const validatePassword = (password: string) => {
+        // passwordPolicy: {
+        //     minimumLength: 10,
+        //     requireLowercase: true,
+        //     requireNumbers: true,
+        //     requireSymbols: true,
+        //     requireUppercase: true,
+        //   }
+
+        const hasNumber = /\d/.test(password);
+        const hasUpper = /[A-Z]/.test(password);
+        const hasLower = /[a-z]/.test(password);
+        const hasSymbol = /[^A-Za-z0-9]/.test(password);
+
+        if (password.length < 10) {
+            return 'La contraseña debe tener al menos 10 caracteres.';
+        } else if (!hasNumber) {
+            return 'La contraseña debe tener al menos un número.';
+        } else if (!hasUpper) {
+            return 'La contraseña debe tener al menos una mayúscula.';
+        } else if (!hasLower) {
+            return 'La contraseña debe tener al menos una minúscula.';
+        } else if (!hasSymbol) {
+            return 'La contraseña debe tener al menos un símbolo.';
+        }
+        return '';
+    }
+
     const validateInputs = () => {
         const email = document.getElementById('email') as HTMLInputElement;
         const password = document.getElementById('password') as HTMLInputElement;
-        const name = document.getElementById('name') as HTMLInputElement;
-        const userName = document.getElementById('userName') as HTMLInputElement;
+        // const name = document.getElementById('name') as HTMLInputElement;
+        // const userName = document.getElementById('userName') as HTMLInputElement;
 
         let isValid = true;
 
@@ -109,9 +141,10 @@ export default function SignUpPage() {
             setEmailErrorMessage('');
         }
 
-        if (!password.value || password.value.length < 6) {
+        const passwordError = validatePassword(password.value);
+        if (passwordError) {
             setPasswordError(true);
-            setPasswordErrorMessage('Password debe tener al menos 6 caracteres.');
+            setPasswordErrorMessage(passwordError);
             isValid = false;
         } else {
             setPasswordError(false);
@@ -119,6 +152,19 @@ export default function SignUpPage() {
         }
         return isValid;
     };
+
+    const handleAuthProvider = async (provider: string) => {
+        try {
+            if (provider === 'Google') {
+                await signInWithRedirect({ provider: 'Google' });
+            } else if (provider === 'Facebook') {
+                await signInWithRedirect({ provider: 'Facebook' });
+            }
+        } catch (error) {
+            console.error('Error signing in with redirect', error);
+        }
+    };
+
 
     // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     //     event.preventDefault();
@@ -190,10 +236,10 @@ export default function SignUpPage() {
                                     color={passwordError ? 'error' : 'primary'}
                                 />
                             </FormControl>
-                            <FormControlLabel
+                            {/* <FormControlLabel
                                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                                 label="Quiero recibir noticias y ofertas de Rebl a este email."
-                            />
+                            /> */}
                             <Button
                                 type="submit"
                                 fullWidth
@@ -202,6 +248,11 @@ export default function SignUpPage() {
                             >
                                 Registrarme
                             </Button>
+                            {verficiationRequired && (
+                                <Alert severity="success">
+                                    Se ha enviado un correo de verificación a tu email.
+                                </Alert>
+                            )}
                             <Typography sx={{ textAlign: 'center' }}>
                                 ¿Ya tienes una cuenta?{' '}
                                 <span>
@@ -223,7 +274,7 @@ export default function SignUpPage() {
                                 type="submit"
                                 fullWidth
                                 variant="outlined"
-                                onClick={() => alert('Sign up with Google')}
+                                onClick={() => handleAuthProvider('Google')}
                                 startIcon={<GoogleIcon />}
                             >
                                 Inicia sesión con Google
@@ -232,7 +283,7 @@ export default function SignUpPage() {
                                 type="submit"
                                 fullWidth
                                 variant="outlined"
-                                onClick={() => alert('Sign up with Facebook')}
+                                onClick={() => handleAuthProvider('Facebook')}
                                 startIcon={<FacebookIcon />}
                             >
                                 Inicia sesión con Facebook

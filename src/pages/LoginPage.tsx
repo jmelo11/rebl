@@ -116,9 +116,9 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
 
     const [showCustomTheme, setShowCustomTheme] = React.useState(true);
     const defaultTheme = createTheme({ palette: { mode } });
-    const SignUpTheme = createTheme(getMPTheme(mode));
+    const SignInTheme = createTheme(getMPTheme(mode));
     return (
-        <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}>
+        <ThemeProvider theme={showCustomTheme ? SignInTheme : defaultTheme}>
             <CssBaseline enableColorScheme />
             <SignInContainer direction="column" justifyContent="space-between">
 
@@ -172,7 +172,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
                                     variant="body2"
                                     sx={{ alignSelf: 'baseline' }}
                                 >
-                                    Forgot your password?
+                                    ¿Olvidaste tu contraseña?
                                 </Link>
                             </Box>
                             <TextField
@@ -192,7 +192,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
                         </FormControl>
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
+                            label="Recordarme"
                         />
                         <ForgotPassword open={open} handleClose={handleClose} />
                         <Button
@@ -201,17 +201,17 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
                             variant="contained"
                             onClick={validateInputs}
                         >
-                            Sign in
+                            Inicia sesión
                         </Button>
                         <Typography sx={{ textAlign: 'center' }}>
-                            Don&apos;t have an account?{' '}
+                            ¿No tienes una cuenta?{' '}
                             <span>
                                 <Link
-                                    href="/material-ui/getting-started/templates/sign-in/"
+                                    href="/signup"
                                     variant="body2"
                                     sx={{ alignSelf: 'center' }}
                                 >
-                                    Sign up
+                                    Regístrate
                                 </Link>
                             </span>
                         </Typography>
@@ -222,19 +222,19 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
                             type="submit"
                             fullWidth
                             variant="outlined"
-                            onClick={() => alert('Sign in with Google')}
+                            onClick={() => alert('Inicia sesion con Google')}
                             startIcon={<GoogleIcon />}
                         >
-                            Sign in with Google
+                            Inicia sesión con Google
                         </Button>
                         <Button
                             type="submit"
                             fullWidth
                             variant="outlined"
-                            onClick={() => alert('Sign in with Facebook')}
+                            onClick={() => alert('Inicia sesion con Facebook')}
                             startIcon={<FacebookIcon />}
                         >
-                            Sign in with Facebook
+                            Inicia sesión con Facebook
                         </Button>
                     </Box>
                 </Card>
