@@ -4,18 +4,16 @@ import SignUpPage from './pages/SignUpPage';
 import StepperPage from './pages/StepperPage';
 import ReportPage from './pages/ReportPage';
 import FeedbackPage from './pages/FeedbackPage';
+import LoginPage from './pages/LoginPage';
 
-import outputs from "../amplify_outputs.json"
-import { Amplify } from "aws-amplify"
 
-Amplify.configure(outputs)
 
 function App() {
   return (
-
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/stepper" element={<StepperPage />} />
         <Route path="/mydebtreport" element={<ReportPage />} />

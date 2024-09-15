@@ -74,7 +74,6 @@ export default function SignUpPage() {
         await signUp({
             username: data.get('email') as string,
             password: data.get('password') as string,
-
         });
     }
 
@@ -148,7 +147,7 @@ export default function SignUpPage() {
                             alignItems: 'center',
                             justifyContent: 'center',
                         }}>
-                            <ReblLogo white />
+                            <ReblLogo />
                             <Typography
                                 variant="h3"
                             >
@@ -160,7 +159,6 @@ export default function SignUpPage() {
                             onSubmit={handleSubmit}
                             sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
                         >
-
                             <FormControl>
                                 <FormLabel htmlFor="email">Email</FormLabel>
                                 <TextField
