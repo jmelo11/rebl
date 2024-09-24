@@ -156,8 +156,8 @@ export default function Features() {
           variant="body1"
           sx={{ color: 'text.secondary', mb: { xs: 2, sm: 4 } }}
         >
-          Nos interesa que tengas una vision clara de que sucede con tu deuda y que tengas la información relevante
-          para que puedas gestionarla de la mejor manera.
+          Nos interesa que tengas una comprensión clara de lo que está sucediendo 
+          con tu deuda y que tengas la información relevante para que puedas manejarla de la mejor manera posible.
         </Typography>
       </Box>
       <Box
