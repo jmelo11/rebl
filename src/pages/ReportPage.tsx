@@ -1,4 +1,4 @@
-import { Box, Divider, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 import React from 'react'
 import {
     createTheme,
@@ -8,14 +8,11 @@ import {
 } from '@mui/material/styles';
 import getMPTheme from '../theme/getMPTheme';
 import CssBaseline from '@mui/material/CssBaseline';
-import ReblLogo from '../components/ReblLogo';
 import { WebReport, WebReportProps } from '../components/Report/WebReport';
-import SideMenu from '../components/SideMenu';
-import TopBar from '../components/TopBar';
 import BaseDashboard from '../components/BaseDashboard';
 
 export default function ReportPage() {
-    const [mode, setMode] = React.useState<PaletteMode>('light');
+    const [mode, _setMode] = React.useState<PaletteMode>('light');
     // const StepperTheme = createTheme(getMPTheme(mode));
     const BaseTheme = createTheme(getMPTheme(mode));
     const BaseContainer = styled(Stack)(({ theme }) => ({

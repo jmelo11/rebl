@@ -4,9 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import AppAppBar from '../components/AppAppBar';
 import Hero from '../components/Hero';
-import LogoCollection from '../components/LogoCollection';
 import Highlights from '../components/Highlights';
-import Pricing from '../components/Pricing';
 import Features from '../components/Features';
 import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
@@ -15,7 +13,7 @@ import getMPTheme from '../theme/getMPTheme';
 
 export default function LandingPage() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
-  const [showCustomTheme, setShowCustomTheme] = React.useState(true);
+  const [showCustomTheme, _setShowCustomTheme] = React.useState(true);
   const MPTheme = createTheme(getMPTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
 
@@ -34,15 +32,15 @@ export default function LandingPage() {
     }
   }, []);
 
-  const toggleColorMode = () => {
-    const newMode = mode === 'dark' ? 'light' : 'dark';
-    setMode(newMode);
-    localStorage.setItem('themeMode', newMode); // Save the selected mode to localStorage
-  };
+  // const toggleColorMode = () => {
+  //   const newMode = mode === 'dark' ? 'light' : 'dark';
+  //   setMode(newMode);
+  //   localStorage.setItem('themeMode', newMode); // Save the selected mode to localStorage
+  // };
 
-  const toggleCustomTheme = () => {
-    setShowCustomTheme((prev) => !prev);
-  };
+  // const toggleCustomTheme = () => {
+  //   setShowCustomTheme((prev) => !prev);
+  // };
 
   return (
     <ThemeProvider theme={showCustomTheme ? MPTheme : defaultTheme}>

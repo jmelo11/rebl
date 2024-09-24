@@ -14,7 +14,7 @@ import BaseDashboard from '../components/BaseDashboard';
 
 export default function StepperPage() {
 
-    const [mode, setMode] = React.useState<PaletteMode>('light');
+    const [mode, _setMode] = React.useState<PaletteMode>('light');
     // const StepperTheme = createTheme(getMPTheme(mode));
     const StepperTheme = createTheme(getMPTheme(mode));
     const StepperContainer = styled(Stack)(({ theme }) => ({

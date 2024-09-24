@@ -62,8 +62,8 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
     },
 }));
 
-export default function SignIn(props: { disableCustomTheme?: boolean }) {
-    const [mode, setMode] = React.useState<PaletteMode>('light');
+export default function SignIn() {
+    const [mode, _setMode] = React.useState<PaletteMode>('light');
     const [emailError, setEmailError] = React.useState(false);
     const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
     const [passwordError, setPasswordError] = React.useState(false);
@@ -114,7 +114,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
         return isValid;
     };
 
-    const [showCustomTheme, setShowCustomTheme] = React.useState(true);
+    const [showCustomTheme, _setShowCustomTheme] = React.useState(true);
     const defaultTheme = createTheme({ palette: { mode } });
     const SignInTheme = createTheme(getMPTheme(mode));
     return (
