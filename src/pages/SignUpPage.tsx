@@ -74,6 +74,8 @@ export default function SignUpPage() {
             password: data.get('password') as string,
         });
 
+        console.log(userId, nextStep);
+
         if (isSignUpComplete) {
             setVerificationRequired(false);
         } else {

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
+import { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // Define the list of menu items for reference inside the provider
