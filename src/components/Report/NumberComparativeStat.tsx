@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Chip, Modal, Stack, Typography, useTheme } from '@mui/material'
+import { Box, Card, CardContent, Chip, Modal, Stack, Typography } from '@mui/material'
 import InfoIcon from '@mui/icons-material/Info';
 import IconButton from '@mui/material/IconButton';
 import React from 'react';
@@ -20,7 +20,7 @@ type NumberComparativeStatProps = {
 }
 
 export default function NumberComparativeStat(props: NumberComparativeStatProps) {
-    const [mode, setMode] = React.useState<PaletteMode>('light');
+    const [mode, _setMode] = React.useState<PaletteMode>('light');
 
     const labelColors = {
         up: 'success' as const,

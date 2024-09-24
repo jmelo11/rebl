@@ -4,7 +4,7 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { FormControl, FormControlLabel, FormLabel, InputLabel, OutlinedInput, Radio, RadioGroup, Stack, TextField } from '@mui/material';
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Stack, TextField } from '@mui/material';
 
 interface StepProps {
     handleNext: () => void;

@@ -1,8 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-
-
 type ReblLogoProps = {
     white?: boolean;
     variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';

@@ -40,11 +40,6 @@ export default function StepperForm() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
-
 
   return (
     <Box sx={{ maxWidth: 600 }}>

@@ -1,42 +1,10 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import { Button, Card, CardContent, CardHeader, IconButton, Stack, Typography } from '@mui/material';
+import { IconButton, Stack, Typography } from '@mui/material';
 import SimpleNumericStat from './SimpleNumericStat';
 import FeedbackCard from './FeedbackCard';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers'
 import ProductOptionsMenu from '../ProductOptionsMenu';
 import SyncIcon from '@mui/icons-material/Sync';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { useTheme } from '@mui/material/styles';
-
-interface InfoCardProps {
-    title: string;
-    subtitle: string;
-    children: React.ReactNode;
-}
-
-function InfoCard(props: InfoCardProps) {
-    return (
-        <Card
-            variant="outlined"
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                flexGrow: 1,
-            }}
-        >
-            <CardHeader
-                title={props.title}
-                subheader={props.subtitle}
-            />
-            <CardContent>
-                {props.children}
-            </CardContent>
-        </Card>
-    );
-}
-
 
 export interface WebReportProps {
     prodType: string,
@@ -58,9 +26,7 @@ function formatCurrency(value: number, currency_symbol: string) {
 }
 
 export function WebReport(props: WebReportProps) {
-    const theme = useTheme();
     return (
-
         <Stack spacing={1}>
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{
                 justifyContent: 'space-between',
