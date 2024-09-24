@@ -6,8 +6,6 @@ import ReportPage from './pages/ReportPage';
 import FeedbackPage from './pages/FeedbackPage';
 import LoginPage from './pages/LoginPage';
 
-
-
 function App() {
   return (
     <BrowserRouter>

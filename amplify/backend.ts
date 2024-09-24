@@ -8,7 +8,6 @@ const backend = defineBackend({
   auth
 });
 
-
 const { cfnUserPool } = backend.auth.resources.cfnResources;
 // modify cfnUserPool policies directly
 cfnUserPool.policies = {
