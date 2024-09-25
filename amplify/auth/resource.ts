@@ -9,7 +9,7 @@ export const auth = defineAuth({
     email: {
       verificationEmailStyle: "LINK",
       verificationEmailSubject: "Bienvenido a rebl",
-      verificationEmailBody: (link) => `Bienvenido a rebl. Para confirmar tu cuenta, por favor haz click en ${link("este enlance")}.`,
+      verificationEmailBody: (createLink) => `Bienvenido a rebl. Para confirmar tu cuenta, por favor haz click en ${createLink("este enlance")}.`,
     },
     // externalProviders: {
     //   scopes: ['EMAIL', 'PROFILE'],
